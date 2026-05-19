@@ -3,6 +3,8 @@ const redis = require('redis')
 const axios = require('axios')
 require('dotenv').config()
 
+const PORT=process.env.EDGE_PORT
+
 const app = express()
 app.use(express.json())
 
@@ -37,4 +39,4 @@ app.post('/invalidate/:key', async (req, res) => {
   res.json({ message: `Key ${key} deleted from cache` })
 })
 
-app.listen(4000, () => console.log('Edge running'))
+app.listen(PORT, () => console.log(`Edge running on ${PORT}`))

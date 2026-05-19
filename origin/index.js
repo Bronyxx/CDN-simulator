@@ -5,7 +5,7 @@ require('dotenv').config()
 app.use(express.json())
 
 
-const PORT= process.env.PORT
+const PORT= process.env.ORIGIN_PORT
 // your existing data endpoint
 app.get('/data/:id', (req, res) => {
   res.set('Cache-Control', 'public, max-age=30')
@@ -42,4 +42,4 @@ app.post('/invalidate/:key', async (req, res) => {
   res.json({ message: `Key ${key} invalidated across all edges` })
 })
 
-app.listen(PORT, () => console.log('Origin running on 3000'))
+app.listen(PORT, () => console.log(`Origin running on ${PORT}`))
