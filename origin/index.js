@@ -14,9 +14,9 @@ app.get('/data/:id', (req, res) => {
 
 // edge node addresses - locally they run on different ports
 const EDGE_NODES = [
-  'http://localhost:4001',
-  //'http://localhost:4002',
-  //'http://localhost:4003'
+  process.env.EDGE_1,
+  //process.env.EDGE_2,
+  //process.env.EDGE_3
 ]
 
 // invalidation endpoint
