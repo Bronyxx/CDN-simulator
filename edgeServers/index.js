@@ -3,7 +3,8 @@ const redis = require('redis')
 const axios = require('axios')
 require('dotenv').config()
 
-const PORT=process.env.EDGE_PORT
+const PORT=process.env.PORT || 4000
+const ORIGIN_URL = process.env.ORIGIN_URL
 
 const app = express()
 app.use(express.json())
@@ -24,7 +25,7 @@ app.get('/data/:id', async (req, res) => {
     return res.json({ source: 'cache', data: JSON.parse(cached) })
   }
 
-  const response = await axios.get(`http://localhost:3000/data/${key}`)
+  const response = await axios.get(`${ORIGIN_URL}/data/${key}`)
   await cache.setEx(key, 30, JSON.stringify(response.data))
   res.json({ source: 'origin', data: response.data })
 })
