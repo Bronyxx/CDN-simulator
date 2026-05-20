@@ -5,7 +5,7 @@ require('dotenv').config()
 app.use(express.json())
 
 
-const PORT= process.env.ORIGIN_PORT
+const PORT= process.env.ORIGIN_PORT || 3000
 // your existing data endpoint
 app.get('/data/:id', (req, res) => {
   res.set('Cache-Control', 'public, max-age=30')
